@@ -4,9 +4,40 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
+
+    'modules' => [
+        'db-manager' => [
+            'class' => 'bs\dbManager\Module',
+            // path to directory for the dumps
+            'path' => '@app/backups',
+            // list of registerd db-components
+            'dbList' => ['db'],
+            'as access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+            ],
+        ],
+    ],
+
+        'gridview' =>  [
+             'class' => '\kartik\grid\Module'
+             // enter optional module parameters below - only if you need to  
+             // use your own export download action or custom translation 
+             // message source
+             // 'downloadAction' => 'gridview/export/download',
+             // 'i18n' => []
+         ]
+        ],
+
+
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -19,6 +50,7 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+    
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,

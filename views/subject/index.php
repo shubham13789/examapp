@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SubjectSearch */
@@ -20,17 +20,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'subject_id',
-            'name',
-
-            ['class' => 'yii\grid\ActionColumn'],
+        'autoXlFormat'=>true,
+        
+        
+        'export'=>[
+        'label' => 'Export',
+        'fontAwesome'=>true,
+        'showConfirmAlert'=>false,
+        'target'=>GridView::TARGET_BLANK
         ],
+        'columns' => [
+            ['class' => 'kartik\grid\SerialColumn'],
+            //'student_id',
+            
+            'name',
+            ['class' => 'kartik\grid\ActionColumn'],
+        ],
+        'pjax'=>true,
+        'showPageSummary'=>true,
+        'panel'=>[
+            
+            'heading'=> $this->title,
+           
+        ]
     ]); ?>
 
 

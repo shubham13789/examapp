@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use kartik\sidenav\SideNav;
 
 AppAsset::register($this);
 ?>
@@ -35,6 +36,7 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
@@ -56,24 +58,102 @@ AppAsset::register($this);
         ],
     ]);
     NavBar::end();
+   
     ?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+    <div class="main_container">
+        
+    <div class="col-md-2 ">
+    <br><br><br><br>
+            <?php
+                 echo SideNav::widget([
+                    'type' => SideNav::TYPE_DEFAULT,
+                    'heading' => 'Options',
+                    'items' => [
+                        [
+                            'url' => 'index.php?r=student#',
+                            'label' => 'Home',
+                            'icon' => 'home'
+                        ],
+                        [
+                            'url' => 'index.php?r=student#',
+                            'label' => 'student',
+                        ],
+                        [
+                            'url' => 'index.php?r=department#',
+                            'label' => 'department',
+                        ],
+                        [
+                            'url' => 'index.php?r=examination#',
+                            'label' => 'exam',
+                        ],
+                        
+                        [
+                            'url' => 'index.php?r=marks-obtained#',
+                            'label' => 'student marks',
+                        ],
+                        [
+                            'url' => 'index.php?r=total-marks#',
+                            'label' => 'total marks',
+                        ],
+                        [
+                            'url' => 'index.php?r=degree#',
+                            'label' => 'degree',
+                        ],
+                        [
+                            'url' => 'index.php?r=subject#',
+                            'label' => 'subject',
+                        ],
+                        [
+                            'url' => 'index.php?r=course#',
+                            'label' => 'Courses',
+                        ],
+                        [
+                            'url' => 'index.php?r=semester#',
+                            'label' => 'semester',
+                        ],
+                        [
+                            'url' => 'index.php?r=academic-year#',
+                            'label' => 'Academic Year',
+                        ],
+                        [
+                            'url' => 'index.php?r=degree-subject#',
+                            'label' => 'degree-subject',
+                        ],
+                        
+                        [
+                            'label' => 'Help',
+                            'icon' => 'question-sign',
+                            'items' => [
+                                ['label' => 'student', 'icon'=>'info-sign', 'url'=>'index.php?r=student#'],
+                                ['label' => 'teacher', 'icon'=>'phone', 'url'=>'index.php?r=teacher#'],
+                            ],
+                        ],
+                    ],
+                ]);
+            ?>  
+        </div>
+        <div class="col-md-10 right_col">
+            <br>
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= Alert::widget() ?>
+            
+            <?= $content ?>
+        </div>
+        
     </div>
+    
 </div>
-
+<!-- <br>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
-</footer>
+</footer> -->
 
 <?php $this->endBody() ?>
 </body>
