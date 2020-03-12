@@ -54,14 +54,21 @@ class DegreeSubjectSearch extends DegreeSubject
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith('degree');
+        $query->joinWith('subject');
+        $query->joinWith('department');
+
 
         // grid filtering conditions
         $query->andFilterWhere([
             'degree_subject_id' => $this->degree_subject_id,
-            'degree_id' => $this->degree_id,
-            'subject_id' => $this->subject_id,
-            'department_id' => $this->department_id,
+            // 'degree_id' => $this->degree_id,
+            // 'subject_id' => $this->subject_id,
+            // 'department_id' => $this->department_id,
         ]);
+        $query->andFilterWhere(['like', 'degree.name', $this->degree_id]);
+        $query->andFilterWhere(['like', 'subject.name', $this->subject_id]);
+        $query->andFilterWhere(['like', 'department.name',  $this->department_id]);
 
         return $dataProvider;
     }

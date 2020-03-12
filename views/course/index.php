@@ -36,10 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
             
-            'course_id',
+            //'course_id',
             'name',
             'code',
-            'degree_subject_id',
+            //'degree_subject_id',
+            [
+                'label' => 'Degree',
+                'value' => 'degreeSubject.degree.name',
+                'attribute' => 'degree_subject_id',
+            ],
+            [
+                'label' => 'Subject',
+                'value' => 'degreeSubject.subject.name',
+                'attribute' => 'degree_subject_id',
+            ],
 
            
             ['class' => 'kartik\grid\ActionColumn'],

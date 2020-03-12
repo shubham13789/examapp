@@ -101,6 +101,10 @@ AppAsset::register($this);
                             'label' => 'degree',
                         ],
                         [
+                            'url' => 'index.php?r=academic-year-semester#',
+                            'label' => 'Academic year semester',
+                        ],
+                        [
                             'url' => 'index.php?r=subject#',
                             'label' => 'subject',
                         ],

@@ -56,12 +56,14 @@ class CourseSearch extends Courses
             return $dataProvider;
         }
 
+        //$query->joinWith('degree_subject');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'course_id' => $this->course_id,
-            'degree_subject_id' => $this->degree_subject_id,
+            //'degree_subject_id' => $this->degree_subject_id,
         ]);
-
+        //$query->andFilterWhere(['like', 'degree_id', $this->degree_subject_id]);
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'code', $this->code]);
 
